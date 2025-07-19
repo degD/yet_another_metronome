@@ -6,37 +6,63 @@
 
 html,
 body {
+  width: 100vw;
+  height: 100%;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
-h1 {
-  background: var(--background-color);
-}
-
-#beatBoxContainer {
+#beat-box-container {
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 2;
 }
 
-.beatBox {
-  width: 10px;
-  height: 10px;
+.beat-box {
+  width: 40px;
+  height: 40px;
   margin: 10px;
   background-color: var(--deactive-color);
 }
 
-input {
-  max-width: 100px;
+#input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 4;
 }
 
-#startMetronomeButton {
-  width: 40px;
-  height: 40px;
-  background-color: var(--active-color);
+input {
+  margin: 10px;
+  width: 60vw;
+  font-size: 40px;
+  display: block;
+}
+
+#button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+}
+
+#start-metronome-button {
+  width: 100px;
+  height: 100px;
+  background-color: var(--deactive-color);
   border-radius: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+svg {
+  width: 60%;
+  display: none;
 }

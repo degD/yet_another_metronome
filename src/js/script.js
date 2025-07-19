@@ -84,7 +84,7 @@ function stopPlayingBeats() {
  * @param {number} currentBeat Index of the active beat's box. Starting from zero
  */
 function updateVisualActiveBeat(currentBeat) {
-  const beatBoxes = document.querySelectorAll(".beatBox");
+  const beatBoxes = document.querySelectorAll(".beat-box");
   beatBoxes.forEach((beatBox, i) => {
     if (i == currentBeat)
       beatBox["style"]["background"] = BEAT_ACTIVE_COLOR;
@@ -98,37 +98,61 @@ function updateVisualActiveBeat(currentBeat) {
  * @param {number} numberOfBeats Number of beats that will be displayed
  */
 function updateVisualBeatNumber(numberOfBeats) {
-  const beatBoxContainer = document.getElementById("beatBoxContainer");
+  const beatBoxContainer = document.getElementById("beat-box-container");
   beatBoxContainer.innerHTML = "";
   for (let i = 0; i < numberOfBeats; i++) 
-    beatBoxContainer.innerHTML += '<div class="beatBox"></div>';
+    beatBoxContainer.innerHTML += '<div class="beat-box"></div>';
+}
+
+function toggleButtonVisual() {
+  const metronomeButton = document.getElementById("start-metronome-button");
+  const playSvgIcon = document.getElementById("play-svg");
+  const pauseSvgIcon = document.getElementById("pause-svg");
+  if (isPlaying) {
+    metronomeButton["style"]["background"] = BEAT_DEACTIVE_COLOR;
+    playSvgIcon["style"]["display"] = "none";
+    pauseSvgIcon["style"]["display"] = "block";
+    pauseSvgIcon["style"]["fill"] = BEAT_ACTIVE_COLOR;
+  }
+  else {
+    metronomeButton["style"]["background"] = BEAT_ACTIVE_COLOR;
+    pauseSvgIcon["style"]["display"] = "none";
+    playSvgIcon["style"]["display"] = "block";
+    playSvgIcon["style"]["fill"] = BEAT_DEACTIVE_COLOR;
+  }
 }
 
 // Change number of beat boxes displayed when input value changed
-document.getElementById("numberOfBeats").addEventListener("input", evt => {
+document.getElementById("number-of-beats").addEventListener("input", evt => {
   const newNumberOfBeats = +(evt.target.value);
   updateVisualBeatNumber(newNumberOfBeats);
 });
 
 // Toggle playing metronome when button is pressed
 // Disable fields when metronome is playing
-document.getElementById("startMetronomeButton").addEventListener("click", evt => {
-  const numberOfBeatsInput = document.getElementById("numberOfBeats");
+document.getElementById("start-metronome-button").addEventListener("click", evt => {
+  const numberOfBeatsInput = document.getElementById("number-of-beats");
   const numberOfBeats = numberOfBeatsInput.value;
-  const beatsPerMinuteInput = document.getElementById("beatsPerMinute");
+  const beatsPerMinuteInput = document.getElementById("beats-per-minute");
   const beatsPerMinute = beatsPerMinuteInput.value;
   if (isPlaying) {
     stopPlayingBeats();
     numberOfBeatsInput.disabled = false;
     beatsPerMinuteInput.disabled = false;
+    toggleButtonVisual();
   }
   else {
     startPlayingBeats(numberOfBeats, beatsPerMinute);
     numberOfBeatsInput.disabled = true;
     beatsPerMinuteInput.disabled = true;
+    toggleButtonVisual();
   }
 });
 
 // Set initial input values
-document.getElementById("numberOfBeats").value = 4;
-document.getElementById("beatsPerMinute").value = 60;
+document.getElementById("number-of-beats").value = 4;
+document.getElementById("beats-per-minute").value = 60;
+
+// Set initial button icon
+document.getElementById("play-svg")["style"]["display"] = "block";
+document.getElementById("play-svg")["style"]["fill"] = BEAT_ACTIVE_COLOR;
