@@ -1,0 +1,42 @@
+:root {
+  --active-color: #A2D729;
+  --deactive-color: #1B5E20; 
+  --background-color: #E9F7C2;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  background: var(--background-color);
+}
+
+#beatBoxContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.beatBox {
+  width: 10px;
+  height: 10px;
+  margin: 10px;
+  background-color: var(--deactive-color);
+}
+
+input {
+  max-width: 100px;
+}
+
+#startMetronomeButton {
+  width: 40px;
+  height: 40px;
+  background-color: var(--active-color);
+  border-radius: 100%;
+}

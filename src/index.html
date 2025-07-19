@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Metronome</title>
+</head>
+<body>
+  <h1>Yet Another Metronome</h1>
+  
+  <div id="beatBoxContainer">
+    <div class="beatBox"></div>
+    <div class="beatBox"></div>
+    <div class="beatBox"></div>
+    <div class="beatBox"></div>
+  </div>
+  
+  <label for="numberOfBeats">Beats:</label>
+  <input type="number" name="numberOfBeats" id="numberOfBeats" value="4">
+  
+  <label for="beatsPerMinute">BPM:</label>
+  <input type="number" name="beatsPerMinute" id="beatsPerMinute" value="60">
+  
+  <div id="startMetronomeButton"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

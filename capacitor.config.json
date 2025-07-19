@@ -1,0 +1,10 @@
+{
+  "appId": "com.degeder.yam",
+  "appName": "Yet Another Tuner (Y.A.M.)",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
