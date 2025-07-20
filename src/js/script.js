@@ -11,7 +11,7 @@ let audioSource = null;
 let audioBuffer = null;
 
 // Preload audio for low-latency access
-fetch('assets/sounds/tone.mp3')
+fetch('/sounds/tone.mp3')
   .then(response => response.arrayBuffer())
   .then(data => audioContext.decodeAudioData(data))
   .then(buffer => audioBuffer = buffer);

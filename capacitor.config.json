@@ -4,7 +4,6 @@
   "webDir": "dist",
   "plugins": {
     "SplashScreen": {
-      "launchAutoHide": false
     }
   }
 }
