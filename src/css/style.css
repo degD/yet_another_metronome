@@ -4,16 +4,24 @@
   --background-color: #E9F7C2;
 }
 
-html,
-body {
+html {
   width: 100vw;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  max-width: 1080px;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  flex: 1;
 }
 
 #beat-box-container {
@@ -41,7 +49,7 @@ body {
 
 input {
   margin: 10px;
-  width: 60vw;
+  width: 80%;
   font-size: 40px;
   display: block;
 }
