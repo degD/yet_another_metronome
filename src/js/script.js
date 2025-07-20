@@ -8,13 +8,18 @@ const WINDOW_SECONDS      = 0.1
 // Initialize Audio Context
 const audioContext  = new window.AudioContext();
 let audioSource = null;
-let audioBuffer = null;
+let audioBufferTick = null;
+let audioBufferTock = null;
 
 // Preload audio for low-latency access
-fetch('/sounds/tone.mp3')
+fetch('/sounds/tick.mp3')
   .then(response => response.arrayBuffer())
   .then(data => audioContext.decodeAudioData(data))
-  .then(buffer => audioBuffer = buffer);
+  .then(buffer => audioBufferTick = buffer);
+fetch('/sounds/tock.mp3')
+  .then(response => response.arrayBuffer())
+  .then(data => audioContext.decodeAudioData(data))
+  .then(buffer => audioBufferTock = buffer);
 
 // Controlling whether the metronome is playing or not
 let isPlaying = false;
@@ -24,7 +29,7 @@ let isPlaying = false;
  * @param {number} startTime Start time of the beat in seconds since the Audio Context
  * @param {number} duration Duration of the beat in seconds 
  */
-function playScheduledBeat(startTime, duration) {
+function playScheduledBeat(startTime, duration, audioBuffer) {
   audioSource = audioContext.createBufferSource();
   audioSource.buffer = audioBuffer;
   audioSource.connect(audioContext.destination);
@@ -47,6 +52,7 @@ function startPlayingBeats(numberOfBeats, beatsPerMinute) {
   let nextBeatTime = audioContext.currentTime;
   let nextVisualBeatTime = audioContext.currentTime;
   let currentBeat = 0;
+  let currentAudioBuffer = null;
   
   function scheduler() {
 
@@ -55,7 +61,8 @@ function startPlayingBeats(numberOfBeats, beatsPerMinute) {
 
     // Schedule beats for next WINDOW_SECONDS window
     while (nextBeatTime < audioContext.currentTime + WINDOW_SECONDS) {
-      playScheduledBeat(nextBeatTime, beatInterval / 2);
+      currentAudioBuffer = currentBeat == 0 ? audioBufferTick : audioBufferTock;
+      playScheduledBeat(nextBeatTime, beatInterval / 2, currentAudioBuffer);
       if (nextVisualBeatTime <= audioContext.currentTime) {
         updateVisualActiveBeat(currentBeat);
         nextVisualBeatTime = nextBeatTime;
