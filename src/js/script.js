@@ -4,6 +4,8 @@ const BEAT_ACTIVE_COLOR   = "#f4581a"
 const BEAT_DEACTIVE_COLOR = "#494949ff"
 const SECONDS_IN_MINUTE   = 60
 const WINDOW_SECONDS      = 0.1
+const MAX_NUM_OF_BEATS    = 20
+const MAX_BPM             = 600
 
 // Initialize Audio Context
 const audioContext  = new window.AudioContext();
@@ -142,7 +144,8 @@ function isPositiveInteger(n) {
 // Change number of beat boxes displayed when input value changed
 document.getElementById("number-of-beats").addEventListener("input", evt => {
   let newNumberOfBeats = Number(evt.target.value);
-  newNumberOfBeats = isPositiveInteger(newNumberOfBeats) ? newNumberOfBeats : 0;
+  newNumberOfBeats = isPositiveInteger(newNumberOfBeats) ? newNumberOfBeats : 1;
+  newNumberOfBeats = min(MAX_NUM_OF_BEATS, newNumberOfBeats);
   updateVisualBeatNumber(newNumberOfBeats);
 });
 
@@ -153,8 +156,10 @@ document.getElementById("start-metronome-button").addEventListener("click", evt 
   const beatsPerMinuteInput = document.getElementById("beats-per-minute");
   let numberOfBeats = Number(numberOfBeatsInput.value);
   let beatsPerMinute = Number(beatsPerMinuteInput.value);
-  numberOfBeats = isPositiveInteger(numberOfBeats) ? numberOfBeats : 0;
+  numberOfBeats = isPositiveInteger(numberOfBeats) ? numberOfBeats : 1;
   beatsPerMinute = isPositiveInteger(beatsPerMinute) ? beatsPerMinute : 1;
+  numberOfBeats = min(MAX_NUM_OF_BEATS, numberOfBeats);
+  beatsPerMinute = min(MAX_BPM, beatsPerMinute);
 
   if (isPlaying) {
     stopPlayingBeats();
@@ -177,3 +182,12 @@ document.getElementById("beats-per-minute").value = 60;
 // Set initial button icon
 document.getElementById("play-svg")["style"]["display"] = "block";
 document.getElementById("play-svg")["style"]["fill"] = BEAT_ACTIVE_COLOR;
+
+
+
+
+// Better theme/UI
+// Alternative theme toggle switch
+// pico css
+// Logo design
+// show statusbar android

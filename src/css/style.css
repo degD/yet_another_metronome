@@ -10,21 +10,24 @@
 html {
   width: 100vw;
   height: 100%;
+  overflow: auto;
+  overscroll-behavior-y: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
   max-width: 1080px;
+  height: 100%;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  flex: 1;
 }
 
 #beat-box-container {
