@@ -111,27 +111,38 @@ function updateVisualBeatNumber(numberOfBeats) {
     beatBoxContainer.innerHTML += '<div class="beat-box"></div>';
 }
 
+/**
+ * Toggle metronome play button visuality between pressed (playing) and stopped.
+ */
 function toggleButtonVisual() {
   const metronomeButton = document.getElementById("start-metronome-button");
   const playSvgIcon = document.getElementById("play-svg");
   const pauseSvgIcon = document.getElementById("pause-svg");
   if (isPlaying) {
-    metronomeButton["style"]["background"] = BEAT_DEACTIVE_COLOR;
     playSvgIcon["style"]["display"] = "none";
     pauseSvgIcon["style"]["display"] = "block";
     pauseSvgIcon["style"]["fill"] = BEAT_ACTIVE_COLOR;
   }
   else {
-    metronomeButton["style"]["background"] = BEAT_ACTIVE_COLOR;
     pauseSvgIcon["style"]["display"] = "none";
     playSvgIcon["style"]["display"] = "block";
-    playSvgIcon["style"]["fill"] = BEAT_DEACTIVE_COLOR;
+    playSvgIcon["style"]["fill"] = BEAT_ACTIVE_COLOR;
   }
+}
+
+/**
+ * Returns true if a given variable is a positive integer
+ * @param {number} n Number to be tested
+ * @returns true if positive integer
+ */
+function isPositiveInteger(n) {
+  return Number.isInteger(n) && n > 0;
 }
 
 // Change number of beat boxes displayed when input value changed
 document.getElementById("number-of-beats").addEventListener("input", evt => {
-  const newNumberOfBeats = +(evt.target.value);
+  let newNumberOfBeats = Number(evt.target.value);
+  newNumberOfBeats = isPositiveInteger(newNumberOfBeats) ? newNumberOfBeats : 0;
   updateVisualBeatNumber(newNumberOfBeats);
 });
 
@@ -139,9 +150,12 @@ document.getElementById("number-of-beats").addEventListener("input", evt => {
 // Disable fields when metronome is playing
 document.getElementById("start-metronome-button").addEventListener("click", evt => {
   const numberOfBeatsInput = document.getElementById("number-of-beats");
-  const numberOfBeats = numberOfBeatsInput.value;
   const beatsPerMinuteInput = document.getElementById("beats-per-minute");
-  const beatsPerMinute = beatsPerMinuteInput.value;
+  let numberOfBeats = Number(numberOfBeatsInput.value);
+  let beatsPerMinute = Number(beatsPerMinuteInput.value);
+  numberOfBeats = isPositiveInteger(numberOfBeats) ? numberOfBeats : 0;
+  beatsPerMinute = isPositiveInteger(beatsPerMinute) ? beatsPerMinute : 1;
+
   if (isPlaying) {
     stopPlayingBeats();
     numberOfBeatsInput.disabled = false;
