@@ -1,7 +1,10 @@
 :root {
-  --active-color: #A2D729;
-  --deactive-color: #1B5E20; 
+  --active-color: #f4581a;
+  --deactive-color: #494949ff; 
   --background-color: #E9F7C2;
+  --dark-background: #121212;
+  --dark-theme-text: #eee;
+  --dark-disabled: #424242;
 }
 
 html {
@@ -77,7 +80,14 @@ svg {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #121212;
-    color: #fff;
+    background-color: var(--dark-background);
+    color: var(--dark-theme-text);
+  }
+  input {
+    background-color: var(--dark-background);
+    color: var(--dark-theme-text);
+  }
+  input:disabled {
+    background-color: var(--dark-disabled);
   }
 }

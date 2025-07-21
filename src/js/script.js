@@ -1,7 +1,7 @@
 
 // Constants about the metronome
-const BEAT_ACTIVE_COLOR   = "#A2D729"
-const BEAT_DEACTIVE_COLOR = "#1B5E20"
+const BEAT_ACTIVE_COLOR   = "#f4581a"
+const BEAT_DEACTIVE_COLOR = "#494949ff"
 const SECONDS_IN_MINUTE   = 60
 const WINDOW_SECONDS      = 0.1
 
