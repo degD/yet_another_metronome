@@ -1,10 +1,24 @@
+
 :root {
-  --active-color: #f4581a;
-  --deactive-color: #494949ff; 
-  --background-color: #E9F7C2;
-  --dark-background: #121212;
-  --dark-theme-text: #eee;
-  --dark-disabled: #424242;
+  --active-color: #08D9D6;
+  --deactive-color: #EAEAEA;
+}
+
+.active-background {
+  background: var(--active-color);
+}
+
+.active-fill {
+  fill: var(--active-color);
+}
+
+.deactive-background {
+  background: var(--deactive-color);
+  fill: var(--active-color);
+}
+
+.deactive-fill {
+  fill: var(--deactive-color);
 }
 
 html {
@@ -42,7 +56,6 @@ body {
   width: 40px;
   height: 40px;
   margin: 10px;
-  background-color: var(--deactive-color);
 }
 
 #input-container {
@@ -70,7 +83,6 @@ input {
 #start-metronome-button {
   width: 100px;
   height: 100px;
-  background-color: var(--deactive-color);
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -81,16 +93,9 @@ svg {
   display: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--dark-background);
-    color: var(--dark-theme-text);
-  }
-  input {
-    background-color: var(--dark-background);
-    color: var(--dark-theme-text);
-  }
-  input:disabled {
-    background-color: var(--dark-disabled);
-  }
+#theme-switch {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
 }
