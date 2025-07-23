@@ -230,11 +230,3 @@ document.getElementById("beats-per-minute").value = 60;
 // Set initial button icon
 document.getElementById("play-svg")["style"]["display"] = "block";
 document.getElementById("play-svg").classList.add("deactive-fill");
-
-
-
-
-
-// Alternative theme toggle switch --- edge cases
-// Logo design
-// show statusbar android
