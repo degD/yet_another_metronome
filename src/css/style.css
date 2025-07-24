@@ -2,6 +2,7 @@
 :root {
   --active-color: #08D9D6;
   --deactive-color: #EAEAEA;
+  --warning-color: #c02e2e;
 }
 
 .active-background {
@@ -19,6 +20,11 @@
 
 .deactive-fill {
   fill: var(--deactive-color);
+}
+
+.warning-highlight {
+  box-shadow: none;
+  border: 5px solid var(--warning-color);
 }
 
 html {
@@ -56,6 +62,7 @@ body {
   width: 80px;
   height: 80px;
   margin: 10px;
+  border-radius: 20%;
 }
 
 #input-container {

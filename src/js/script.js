@@ -15,6 +15,10 @@ let audioSource = null;
 let audioBufferTick = null;
 let audioBufferTock = null;
 
+// Input components
+const numberOfBeatsInput = document.getElementById("number-of-beats");
+const beatsPerMinuteInput = document.getElementById("beats-per-minute");
+
 // Preload audio for low-latency access
 fetch('/sounds/tick.mp3')
   .then(response => response.arrayBuffer())
@@ -165,7 +169,7 @@ function setCssColors(activeColor, deactiveColor) {
 }
 
 // Change number of beat boxes displayed when input value changed
-document.getElementById("number-of-beats").addEventListener("input", evt => {
+numberOfBeatsInput.addEventListener("input", evt => {
   let newNumberOfBeats = Number(evt.target.value);
   newNumberOfBeats = isPositiveInteger(newNumberOfBeats) ? newNumberOfBeats : 1;
   newNumberOfBeats = Math.min(MAX_NUM_OF_BEATS, newNumberOfBeats);
@@ -175,8 +179,6 @@ document.getElementById("number-of-beats").addEventListener("input", evt => {
 // Toggle playing metronome when button is pressed
 // Disable fields when metronome is playing
 document.getElementById("start-metronome-button").addEventListener("click", evt => {
-  const numberOfBeatsInput = document.getElementById("number-of-beats");
-  const beatsPerMinuteInput = document.getElementById("beats-per-minute");
   let numberOfBeats = Number(numberOfBeatsInput.value);
   let beatsPerMinute = Number(beatsPerMinuteInput.value);
   numberOfBeats = isPositiveInteger(numberOfBeats) ? numberOfBeats : 1;
@@ -223,9 +225,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Add event listeners for max value exceeds
+numberOfBeatsInput.addEventListener("input", evt => {
+  let newNumberOfBeats = Number(evt.target.value);
+  if (isPositiveInteger(newNumberOfBeats) && newNumberOfBeats <= MAX_NUM_OF_BEATS)
+    numberOfBeatsInput.classList.remove("warning-highlight");
+  else
+    numberOfBeatsInput.classList.add("warning-highlight");
+});
+beatsPerMinuteInput.addEventListener("input", evt => {
+  let beatsPerMinute = Number(evt.target.value);
+  if (isPositiveInteger(beatsPerMinute) && beatsPerMinute <= MAX_BPM)
+    beatsPerMinuteInput.classList.remove("warning-highlight");
+  else
+    beatsPerMinuteInput.classList.add("warning-highlight");
+});
+
 // Set initial input values
-document.getElementById("number-of-beats").value = 4;
-document.getElementById("beats-per-minute").value = 60;
+numberOfBeatsInput.value = 4;
+beatsPerMinuteInput.value = 60;
 
 // Set initial button icon
 document.getElementById("play-svg")["style"]["display"] = "block";
