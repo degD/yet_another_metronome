@@ -3,7 +3,5 @@
   "appName": "Yet Another Tuner (Y.A.M.)",
   "webDir": "dist",
   "plugins": {
-    "SplashScreen": {
-    }
   }
 }

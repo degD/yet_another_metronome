@@ -1,3 +1,15 @@
+import { Capacitor } from '@capacitor/core';
+import { StatusBar, Style } from '@capacitor/status-bar';
+
+// Status bar control functions
+const setStatusBarStyleDark = async () => {
+  if (Capacitor.isNativePlatform())
+    await StatusBar.setStyle({ style: Style.Dark });
+};
+const setStatusBarStyleLight = async () => {
+  if (Capacitor.isNativePlatform())
+    await StatusBar.setStyle({ style: Style.Light });
+};
 
 // Constants about the metronome
 const SECONDS_IN_MINUTE   = 60
@@ -208,20 +220,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme") || "light";
   html.setAttribute("data-theme", savedTheme);
   themeSwitch.checked = savedTheme === "dark";
-  if (savedTheme === "dark")
+  if (savedTheme === "dark") {
     setCssColors(ACTIVE_DARK, DEACTIVE_DARK);
-  else
+    setStatusBarStyleDark();
+  }
+  else {
     setCssColors(ACTIVE_LIGHT, DEACTIVE_LIGHT);
+    setStatusBarStyleLight();
+  }
   
   // Update theme and save preference on switch
   themeSwitch.addEventListener("change", (event) => {
     const newTheme = event.target.checked ? "dark" : "light";
     html.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
-    if (newTheme === "dark")
+    if (newTheme === "dark") {
       setCssColors(ACTIVE_DARK, DEACTIVE_DARK);
-    else
+      setStatusBarStyleDark();
+    }
+    else {
       setCssColors(ACTIVE_LIGHT, DEACTIVE_LIGHT);
+      setStatusBarStyleLight();
+    }
   });
 });
 
