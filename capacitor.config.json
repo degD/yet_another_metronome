@@ -3,5 +3,10 @@
   "appName": "Yet Another Tuner (Y.A.M.)",
   "webDir": "dist",
   "plugins": {
+    "SafeArea": {
+      "enabled": true,
+      "customColorsForSystemBars": true,
+      "offset": 0
+    }
   }
 }
