@@ -23,7 +23,7 @@
 
 html {
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   overscroll-behavior-y: none;
   display: flex;
@@ -35,7 +35,7 @@ html {
 
 body {
   max-width: 1080px;
-  height: 100%;
+  height: 100vh;
   padding: 0;
   margin: 0;
   display: flex;
@@ -53,8 +53,8 @@ body {
 }
 
 .beat-box {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   margin: 10px;
 }
 
@@ -94,8 +94,7 @@ svg {
 }
 
 #theme-switch {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
+  margin-top: -20px;
+  align-self: flex-end;
+  margin-right: 10px;
 }

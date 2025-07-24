@@ -116,7 +116,7 @@ function updateVisualBeatNumber(numberOfBeats) {
   const beatBoxContainer = document.getElementById("beat-box-container");
   beatBoxContainer.innerHTML = "";
   for (let i = 0; i < numberOfBeats; i++) 
-    beatBoxContainer.innerHTML += '<div class="beat-box"></div>';
+    beatBoxContainer.innerHTML += '<div class="beat-box deactive-background"></div>';
 }
 
 /**
