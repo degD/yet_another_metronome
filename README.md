@@ -16,3 +16,7 @@ Used [this effect for tock.mp3](https://freesound.org/people/gherat/sounds/13965
 - High beat number support (up to 20)
 - Completely free and open-source (GPLv3 License)
 - Free and most importantly, no ads
+
+## App Images:
+<img width="360" alt="light mode image" src="https://github.com/user-attachments/assets/e4d735c4-d683-49cb-95c7-fe6075edab5e" />
+<img width="360" alt="dark mode image" src="https://github.com/user-attachments/assets/be52617d-9f91-467f-b330-5bbe045ccd5b" />
