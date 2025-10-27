@@ -1,6 +1,6 @@
 {
   "appId": "com.degeder.yam",
-  "appName": "Yet Another Metronome (Y.A.M.)",
+  "appName": "YAM",
   "webDir": "dist",
   "plugins": {
     "SafeArea": {
