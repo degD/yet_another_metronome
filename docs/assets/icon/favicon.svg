@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 48 48"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="favicon.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   inkscape:export-filename="splash-dark.png"
+   inkscape:export-xdpi="327.84"
+   inkscape:export-ydpi="327.84"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.83710145"
+     inkscape:cx="397.20395"
+     inkscape:cy="419.30402"
+     inkscape:window-width="1920"
+     inkscape:window-height="1128"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3"
+     inkscape:export-bgcolor="#000000ff" />
+  <defs
+     id="defs1">
+    <rect
+       x="557.46606"
+       y="219.00452"
+       width="102.26244"
+       height="98.642534"
+       id="rect5" />
+    <rect
+       x="399.09502"
+       y="140.27149"
+       width="179.18552"
+       height="171.9457"
+       id="rect4" />
+    <rect
+       x="189.14027"
+       y="257.91855"
+       width="216.28959"
+       height="298.64253"
+       id="rect3" />
+    <style
+       id="style1">.a{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <text
+     xml:space="preserve"
+     transform="scale(0.06)"
+     id="text3"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3);display:inline;fill:none;stroke:#000000;stroke-width:146.513" />
+  <text
+     xml:space="preserve"
+     transform="scale(0.06)"
+     id="text4"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4);display:inline;fill:none;stroke:#000000;stroke-width:146.513" />
+  <g
+     id="g1"
+     transform="matrix(0.83795014,0,0,0.83795014,3.8891967,3.8891967)">
+    <path
+       class="a"
+       d="M 24,2.5 A 21.51,21.51 0 0 0 2.5,24"
+       id="path1"
+       style="stroke:#24baff;stroke-width:3;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       class="a"
+       d="M 24,45.5 A 21.51,21.51 0 0 0 45.5,24"
+       id="path2"
+       style="stroke:#005278;stroke-width:3;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="line2"
+       class="a"
+       style="fill:none;stroke:#005278;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 30.01,30.01 9.190001,9.190001" />
+    <path
+       id="circle2"
+       class="a"
+       style="fill:none;stroke:#24baff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 32.5,24 A 8.5,8.5 0 0 1 24,32.5 8.5,8.5 0 0 1 15.5,24 8.5,8.5 0 0 1 24,15.5 8.5,8.5 0 0 1 32.5,24 Z" />
+    <path
+       id="line3"
+       class="a"
+       style="fill:none;stroke:#24baff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 17.99,17.99 8.8000002,8.8000002" />
+    <path
+       style="font-size:24px;font-family:'Adwaita Mono';-inkscape-font-specification:'Adwaita Mono';white-space:pre;fill:#005278;fill-opacity:1;stroke:none;stroke-width:0.0656414;stroke-dasharray:none;stroke-opacity:1"
+       d="M 23.287644,29.8498 V 25.649952 L 19.969081,19.35018 h 1.581096 l 2.449829,4.871252 2.449829,-4.871252 h 1.581096 l -3.318563,6.299772 V 29.8498 Z"
+       id="text5"
+       aria-label="Y" />
+  </g>
+</svg>
