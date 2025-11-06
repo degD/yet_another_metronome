@@ -1,5 +1,7 @@
 # Yet Another Metronome (YAM)
 
+- Also [available at fdroid](https://f-droid.org/packages/com.degeder.yam/)!
+
 Yet Another Metronome (YAM) is a simplistic metronome app I built as an amateur musician looking for a free, ad-free, and powerful alternative.
 Most apps I tried had a BPM (beats per minute) limit around 200, which felt too restrictive. I wanted something much faster, so I built it myself.
 
