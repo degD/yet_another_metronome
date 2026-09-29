@@ -1,6 +1,6 @@
 # YAM Privacy Policy
 
-Last updated: YYYY-MM-DD
+Last updated: 2026-09-29
 
 This Privacy Policy explains how Yet Another Metronome (YAM), Android package
 `com.degeder.yam`, handles information.
@@ -49,10 +49,10 @@ children.
 This policy may be updated when the app's data practices change. The current
 version will be published at:
 
-`https://YOUR-USERNAME.github.io/privacy-policies/yam/`
+`https://degd.github.io/privacypolicies/yam/`
 
 ## Contact
 
 For privacy questions, contact:
 
-`YOUR_CONTACT_EMAIL`
+`degederyam@gmail.com`

@@ -26,7 +26,7 @@ The Google Play release is a paid distribution of the same GPLv3 app. The
 GitHub and F-Droid versions remain free, and the corresponding source code for
 the Play release is available in this repository.
 
-See the [YAM privacy policy](https://YOUR-USERNAME.github.io/privacy-policies/yam/).
+See the [YAM privacy policy](https://degd.github.io/privacypolicies/yam/).
 
 ## Building:
 
