@@ -14,6 +14,7 @@ const setStatusBarStyleLight = async () => {
 // Constants about the metronome
 const SECONDS_IN_MINUTE = 60;
 const WINDOW_SECONDS = 0.1;
+const SCHEDULER_INTERVAL_MS = 25;
 const MAX_NUM_OF_BEATS = 20;
 const MAX_BPM = 600;
 const DEACTIVE_DARK = "#252A34";
@@ -55,6 +56,7 @@ fetch('/sounds/tock.mp3')
 
 // Controlling whether the metronome is playing or not
 let isPlaying = false;
+let schedulerTimer: number | null = null;
 
 interface ScheduledVisualBeat {
   time: number;
@@ -136,10 +138,10 @@ function startPlayingBeats(numberOfBeats: number, beatsPerMinute: number): boole
       nextBeatTime += beatInterval;
       currentBeat = (currentBeat + 1) % numberOfBeats;
     }
-    requestAnimationFrame(scheduler);
   }
   
   scheduler();
+  schedulerTimer = window.setInterval(scheduler, SCHEDULER_INTERVAL_MS);
   updateScheduledVisualBeat();
   return true;
 }
@@ -150,6 +152,10 @@ function startPlayingBeats(numberOfBeats: number, beatsPerMinute: number): boole
 function stopPlayingBeats() {
   if (isPlaying) {
     isPlaying = false;
+    if (schedulerTimer !== null) {
+      window.clearInterval(schedulerTimer);
+      schedulerTimer = null;
+    }
     audioSource?.stop(); // Stop in the middle of beat
     audioSource?.disconnect();
     audioSource = null;
