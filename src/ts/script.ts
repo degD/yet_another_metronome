@@ -24,7 +24,7 @@ const ACTIVE_LIGHT = "#08D9D6";
 
 // Initialize Audio Context
 const audioContext = new window.AudioContext();
-let audioSource: AudioBufferSourceNode | null = null;
+const scheduledAudioSources = new Set<AudioBufferSourceNode>();
 let audioBufferTick: AudioBuffer | null = null;
 let audioBufferTock: AudioBuffer | null = null;
 
@@ -69,9 +69,14 @@ interface ScheduledVisualBeat {
  * @param {number} duration Duration of the beat in seconds 
  */
 function playScheduledBeat(startTime: number, duration: number, audioBuffer: AudioBuffer) {
-  audioSource = audioContext.createBufferSource();
+  const audioSource = audioContext.createBufferSource();
   audioSource.buffer = audioBuffer;
   audioSource.connect(audioContext.destination);
+  scheduledAudioSources.add(audioSource);
+  audioSource.addEventListener("ended", () => {
+    scheduledAudioSources.delete(audioSource);
+    audioSource.disconnect();
+  }, { once: true });
   audioSource.start(startTime, 0, duration);
 }
 
@@ -156,9 +161,11 @@ function stopPlayingBeats() {
       window.clearInterval(schedulerTimer);
       schedulerTimer = null;
     }
-    audioSource?.stop(); // Stop in the middle of beat
-    audioSource?.disconnect();
-    audioSource = null;
+    for (const audioSource of scheduledAudioSources) {
+      audioSource.stop(); // Stop in the middle of beat
+      audioSource.disconnect();
+    }
+    scheduledAudioSources.clear();
   }
 }
 
