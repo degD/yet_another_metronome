@@ -56,6 +56,7 @@ fetch('/sounds/tock.mp3')
 
 // Controlling whether the metronome is playing or not
 let isPlaying = false;
+let isStarting = false;
 let schedulerTimer: number | null = null;
 let playbackGeneration = 0;
 
@@ -86,14 +87,25 @@ function playScheduledBeat(startTime: number, duration: number, audioBuffer: Aud
  * @param {number} numberOfBeats Number of beats to be played and displayed
  * @param {number} beatsPerMinute Number of beats to be played in a minute, bpm
  */
-function startPlayingBeats(numberOfBeats: number, beatsPerMinute: number): boolean {
+async function startPlayingBeats(
+  numberOfBeats: number,
+  beatsPerMinute: number,
+): Promise<boolean> {
   const tickBuffer = audioBufferTick;
   const tockBuffer = audioBufferTock;
   if (tickBuffer === null || tockBuffer === null)
     return false;
 
-  if (audioContext.state === 'suspended') {
-    audioContext.resume(); // Required for autoplay policies
+  if (audioContext.state !== 'running') {
+    try {
+      await audioContext.resume(); // Required for autoplay policies
+    }
+    catch {
+      return false;
+    }
+  }
+  if (audioContext.state !== 'running') {
+    return false;
   }
   
   isPlaying = true;
@@ -251,7 +263,7 @@ numberOfBeatsInput.addEventListener("input", () => {
 
 // Toggle playing metronome when button is pressed
 // Disable fields when metronome is playing
-metronomeButton.addEventListener("click", () => {
+metronomeButton.addEventListener("click", async () => {
   let numberOfBeats = Number(numberOfBeatsInput.value);
   let beatsPerMinute = Number(beatsPerMinuteInput.value);
   numberOfBeats = isPositiveInteger(numberOfBeats) ? numberOfBeats : 1;
@@ -266,10 +278,19 @@ metronomeButton.addEventListener("click", () => {
     toggleButtonVisual();
   }
   else {
-    if (startPlayingBeats(numberOfBeats, beatsPerMinute)) {
-      numberOfBeatsInput.disabled = true;
-      beatsPerMinuteInput.disabled = true;
-      toggleButtonVisual();
+    if (isStarting)
+      return;
+
+    isStarting = true;
+    try {
+      if (await startPlayingBeats(numberOfBeats, beatsPerMinute)) {
+        numberOfBeatsInput.disabled = true;
+        beatsPerMinuteInput.disabled = true;
+        toggleButtonVisual();
+      }
+    }
+    finally {
+      isStarting = false;
     }
   }
 });
