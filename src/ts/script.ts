@@ -117,8 +117,17 @@ function startPlayingBeats(numberOfBeats: number, beatsPerMinute: number): boole
     if (!isPlaying) 
       return;
 
+    const currentTime = audioContext.currentTime;
+    if (nextBeatTime < currentTime) {
+      const missedBeatCount = Math.ceil(
+        (currentTime - nextBeatTime) / beatInterval,
+      );
+      nextBeatTime += missedBeatCount * beatInterval;
+      currentBeat = (currentBeat + missedBeatCount) % numberOfBeats;
+    }
+
     // Schedule beats for next WINDOW_SECONDS window
-    while (nextBeatTime < audioContext.currentTime + WINDOW_SECONDS) {
+    while (nextBeatTime < currentTime + WINDOW_SECONDS) {
       const currentAudioBuffer = currentBeat === 0 ? tickBuffer : tockBuffer;
       if (currentAudioBuffer === null)
         return;
