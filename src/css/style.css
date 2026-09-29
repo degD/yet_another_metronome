@@ -106,3 +106,14 @@ svg {
   align-self: flex-end;
   margin-right: 10px;
 }
+
+#app-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  width: 100%;
+  padding: 0.5rem 1rem calc(0.75rem + var(--safe-area-inset-bottom, 0px));
+  font-size: 0.75rem;
+}
