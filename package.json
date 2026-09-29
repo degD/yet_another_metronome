@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "latest",
+    "typescript": "^7.0.2",
     "vite": "^5.4.2"
   },
   "author": "",
