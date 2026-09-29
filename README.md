@@ -17,8 +17,16 @@ Used [this effect for tock.mp3](https://freesound.org/people/gherat/sounds/13965
 - Light and dark mode support with a quick toggle
 - High BPM support (up to 600) beyond typical app limits
 - High beat number support (up to 20)
-- Completely free and open-source (GPLv3 License)
+- Open-source under the GPLv3 License; free on GitHub and F-Droid
 - Free and most importantly, no ads
+
+## Google Play Store:
+
+The Google Play release is a paid distribution of the same GPLv3 app. The
+GitHub and F-Droid versions remain free, and the corresponding source code for
+the Play release is available in this repository.
+
+See the [YAM privacy policy](https://YOUR-USERNAME.github.io/privacy-policies/yam/).
 
 ## Building:
 
