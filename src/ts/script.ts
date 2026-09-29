@@ -57,6 +57,7 @@ fetch('/sounds/tock.mp3')
 // Controlling whether the metronome is playing or not
 let isPlaying = false;
 let schedulerTimer: number | null = null;
+let playbackGeneration = 0;
 
 interface ScheduledVisualBeat {
   time: number;
@@ -98,12 +99,13 @@ function startPlayingBeats(numberOfBeats: number, beatsPerMinute: number): boole
   isPlaying = true;
 
   const beatInterval = SECONDS_IN_MINUTE / beatsPerMinute;
+  const currentPlaybackGeneration = ++playbackGeneration;
   let nextBeatTime = audioContext.currentTime;
   let currentBeat = 0;
   const scheduledVisualBeats: ScheduledVisualBeat[] = [];
 
   function updateScheduledVisualBeat() {
-    if (!isPlaying)
+    if (!isPlaying || currentPlaybackGeneration !== playbackGeneration)
       return;
 
     const currentTime = audioContext.currentTime;
@@ -121,7 +123,7 @@ function startPlayingBeats(numberOfBeats: number, beatsPerMinute: number): boole
   
   function scheduler() {
 
-    if (!isPlaying) 
+    if (!isPlaying || currentPlaybackGeneration !== playbackGeneration)
       return;
 
     const currentTime = audioContext.currentTime;
@@ -157,6 +159,7 @@ function startPlayingBeats(numberOfBeats: number, beatsPerMinute: number): boole
 function stopPlayingBeats() {
   if (isPlaying) {
     isPlaying = false;
+    playbackGeneration++;
     if (schedulerTimer !== null) {
       window.clearInterval(schedulerTimer);
       schedulerTimer = null;
