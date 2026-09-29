@@ -145,6 +145,12 @@ async function startPlayingBeats(
       );
       nextBeatTime += missedBeatCount * beatInterval;
       currentBeat = (currentBeat + missedBeatCount) % numberOfBeats;
+      while (
+        scheduledVisualBeats.length > 0
+        && scheduledVisualBeats[0].time < currentTime
+      ) {
+        scheduledVisualBeats.shift();
+      }
     }
 
     // Schedule beats for next WINDOW_SECONDS window
