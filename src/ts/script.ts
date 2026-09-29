@@ -56,6 +56,11 @@ fetch('/sounds/tock.mp3')
 // Controlling whether the metronome is playing or not
 let isPlaying = false;
 
+interface ScheduledVisualBeat {
+  time: number;
+  beat: number;
+}
+
 /**
  * Schedule and play the beat for a duration
  * @param {number} startTime Start time of the beat in seconds since the Audio Context
@@ -87,8 +92,25 @@ function startPlayingBeats(numberOfBeats: number, beatsPerMinute: number): boole
 
   const beatInterval = SECONDS_IN_MINUTE / beatsPerMinute;
   let nextBeatTime = audioContext.currentTime;
-  let nextVisualBeatTime = audioContext.currentTime;
   let currentBeat = 0;
+  const scheduledVisualBeats: ScheduledVisualBeat[] = [];
+
+  function updateScheduledVisualBeat() {
+    if (!isPlaying)
+      return;
+
+    const currentTime = audioContext.currentTime;
+    while (scheduledVisualBeats.length > 0) {
+      const scheduledBeat = scheduledVisualBeats[0];
+      if (scheduledBeat.time > currentTime)
+        break;
+
+      scheduledVisualBeats.shift();
+      updateVisualActiveBeat(scheduledBeat.beat);
+    }
+
+    requestAnimationFrame(updateScheduledVisualBeat);
+  }
   
   function scheduler() {
 
@@ -101,10 +123,7 @@ function startPlayingBeats(numberOfBeats: number, beatsPerMinute: number): boole
       if (currentAudioBuffer === null)
         return;
       playScheduledBeat(nextBeatTime, beatInterval / 2, currentAudioBuffer);
-      if (nextVisualBeatTime <= audioContext.currentTime) {
-        updateVisualActiveBeat(currentBeat);
-        nextVisualBeatTime = nextBeatTime;
-      }
+      scheduledVisualBeats.push({ time: nextBeatTime, beat: currentBeat });
       nextBeatTime += beatInterval;
       currentBeat = (currentBeat + 1) % numberOfBeats;
     }
@@ -112,6 +131,7 @@ function startPlayingBeats(numberOfBeats: number, beatsPerMinute: number): boole
   }
   
   scheduler();
+  updateScheduledVisualBeat();
   return true;
 }
 
